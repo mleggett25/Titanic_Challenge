@@ -8,4 +8,4 @@ The purpose of this challenge is to create a machine learning model that will pr
 
 ## Data Dictionary
 
-![Data Dictionary](Resources/titanic_data_dictionary.PNG)
+![Data Dictionary](Images/titanic_data_dictionary.PNG)
