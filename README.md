@@ -1,2 +1,8 @@
-# Titanic_Challenge
-Introductory Kaggle Competition to build a predictive model that answers the question: "what sort of people were more likely to survive the Titanic?" using passenger data.
+# Titanic Challenge Using Pandas and Supervised Machine Learning
+
+## Overview of the Titanic Challenge
+
+### Purpose
+
+The purpose of this challenge is to create a machine learning model that will predict whether or not a passenger of the Titanic survived based on various factors. This challenge is from [Kaggle](https://www.kaggle.com/c/titanic).
+
