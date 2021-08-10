@@ -8,4 +8,9 @@ The purpose of this challenge is to create a machine learning model that will pr
 
 ## Data Dictionary
 
+Kaggle provided a training dataset which included the 
+
 ![Data Dictionary](Images/titanic_data_dictionary.PNG)
+
+## Missing Values
+In order to better understand the dataset and clean it as necessary, I first looked to see if the data had any missing values.
