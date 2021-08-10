@@ -8,7 +8,7 @@ The purpose of this challenge is to create a machine learning model that will pr
 
 ## Data Dictionary
 
-Kaggle provided a training dataset which included the 
+Kaggle provided a training dataset and a test dataset. The training dataset included included the 'Survived' variable and will be used to train the machine learning model. The test dataset does not include the 'Survived' variable and will be used to test whether or not the model was able to accurately predict whether or not the passenger survived. The predictions are submitted to Kaggle and an accuracy score is given.
 
 ![Data Dictionary](Images/titanic_data_dictionary.PNG)
 
