@@ -15,6 +15,7 @@ The training dataset includes 891 observations and the test dataset includes 418
 ![Data Dictionary](Images/titanic_data_dictionary.PNG)
 
 ## Missing Values
+
 In order to better understand the dataset and clean it as necessary, I first looked to see if the data had any missing values.
 
 Train Dataframe
