@@ -24,3 +24,4 @@ Test Dataframe
 ![Test Dataframe Missing Values](Images/test_df_missing_values.PNG)
 
 
+Only a few variables are missing values: Age (263), Fare (1), Cabin (1,014), and Embarked (2).
