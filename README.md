@@ -7,3 +7,5 @@
 The purpose of this challenge is to create a machine learning model that will predict whether or not a passenger of the Titanic survived based on various factors. This challenge is from [Kaggle](https://www.kaggle.com/c/titanic).
 
 ## Data Dictionary
+
+![Data Dictionary](Resources/titanic_data_dictionary.PNG)
