@@ -28,3 +28,20 @@ Test Dataframe
 
 
 Only a few variables are missing values: Age (263), Fare (1), Cabin (1,014), and Embarked (2).
+
+### Age Missing Values
+Because age is a continuous variable, it would be beneficial to impute the missing age values with either the mean or the median. To see which would be best to use, I first looked to see if age followed a normal or skewed distribution.
+
+![Age Distribution](Images/age_distribution.PNG)
+
+Seeing as there is a slight skew, I believe it would be best to impute the missing age values with the median. Before simply imputing all the missing age values with one median, it is worth checking first whether age is correlated with any other variables.
+
+Train Dataframe Age Correlation
+
+![Train Dataframe Age Correlation](Images/train_df_cor.PNG)
+
+Test Dataframe Age Correlation
+
+![Test Dataframe Age Correlation](Images/test_df_cor.PNG)
+
+As we can see, age is most correlated with passenger class. 
