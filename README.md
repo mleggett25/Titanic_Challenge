@@ -44,4 +44,4 @@ Test Dataframe Age Correlation
 
 ![Test Dataframe Age Correlation](Images/test_df_cor.PNG)
 
-As we can see, age is most correlated with passenger class. 
+As we can see, age is most correlated with passenger class. Therefore, I grouped age by passenger class and found the mean for each. I then imputed these values for the missing age values.
