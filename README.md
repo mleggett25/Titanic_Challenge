@@ -48,3 +48,20 @@ As we can see, age is most correlated with passenger class. Therefore, I grouped
 
 ![Median Age by Passenger Class](Images/median_age.PNG)
 
+```
+# Impute median ages in the training dataframe
+train_frames = []
+for i in list(set(train_df['Pclass'])):
+    train_df_pclass = train_df[train_df['Pclass'] == i]
+    train_df_pclass['Age'].fillna(train_df_pclass['Age'].median(),inplace=True)
+    train_frames.append(train_df_pclass)
+    new_train_df = pd.concat(train_frames)
+
+# Impute median ages in the testing dataframe
+test_frames = []
+for i in list(set(test_df['Pclass'])):
+    test_df_pclass = test_df[test_df['Pclass'] == i]
+    test_df_pclass['Age'].fillna(train_df_pclass['Age'].median(),inplace=True)
+    test_frames.append(test_df_pclass)
+    new_test_df = pd.concat(test_frames)
+    ```
