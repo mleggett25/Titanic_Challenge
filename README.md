@@ -64,4 +64,16 @@ for i in list(set(test_df['Pclass'])):
     test_df_pclass['Age'].fillna(train_df_pclass['Age'].median(),inplace=True)
     test_frames.append(test_df_pclass)
     new_test_df = pd.concat(test_frames)
-    ```
+```
+
+### Fare Missing Values
+For the missing Fare value, it might be safe to assume that the mean would be the best option to impute according to the passenger class. We can first check that the fare and passenger class are highly correlated.
+
+Train Dataframe Fare Correlation
+
+![Train Dataframe Fare Correlation](Images/train_df_fare_cor.PNG)
+
+Test Dataframe Fare Correlation
+
+![Test Dataframe Fare Correlation](Images/test_df_fare_cor.PNG)
+
