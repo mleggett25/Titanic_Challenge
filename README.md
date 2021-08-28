@@ -77,3 +77,9 @@ Test Dataframe Fare Correlation
 
 ![Test Dataframe Fare Correlation](Images/test_df_fare_cor.PNG)
 
+Seeing as fare is indeed highly correlated with passenger class, I found the null Fare value and saw that the passenger was third class.
+
+![Null Fare](Images/null_fare.PNG)
+
+Using the train data, I found the mean of third class fare's and imputed the mean for the missing Fare value.
+
