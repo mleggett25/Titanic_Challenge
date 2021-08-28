@@ -81,5 +81,14 @@ Seeing as fare is indeed highly correlated with passenger class, I found the nul
 
 ![Null Fare](Images/null_fare.PNG)
 
-Using the train data, I found the mean of third class fare's and imputed the mean for the missing Fare value.
+Using the train data, I found the mean of third class fare, which was 13.6756, and imputed the mean for the missing Fare value.
+
+```
+per_pclass_fare = train_df.groupby(['Pclass']).mean()['Fare']
+per_pclass_fare_df = pd.DataFrame({"Average Fare": per_pclass_fare})
+per_pclass_fare_df
+
+test_df['Fare'] = test_df['Fare'].fillna(13.6756)
+```
+
 
