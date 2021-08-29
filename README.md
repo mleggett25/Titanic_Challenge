@@ -97,3 +97,10 @@ new_test_df['Fare'] = new_test_df['Fare'].fillna(13.6756)
 
 The missing cabin values are substantial - about 77% of Cabin values are missing from the training dataset and about 78% of Cabin values are missing from the testing dataset. With so much of the data missing, it is worth considering dropping the Cabin factor altogether. However, it is reasonable to assume that the location of the passengers' cabin would be an important factor in who survived when taking into to account where the boat split apart, how far a passenger was from stairs or an emergency exit, how much closer they were to the deck to access lifeboats, etc. Therefore, I decided to keep the cabin variable. In order to account for the missing values, I simply replaced the NaNs with "Missing."
 
+```
+new_train_df['Cabin'] = new_train_df['Cabin'].fillna('Missing')
+new_test_df['Cabin'] = new_test_df['Cabin'].fillna('Missing')
+```
+
+
+
