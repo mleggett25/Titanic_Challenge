@@ -30,6 +30,7 @@ Test Dataframe
 Only a few variables are missing values: Age (263), Fare (1), Cabin (1,014), and Embarked (2).
 
 ### Age Missing Values
+
 Because age is a continuous variable, it would be beneficial to impute the missing age values with either the mean or the median. To see which would be best to use, I first looked to see if age followed a normal or skewed distribution.
 
 ![Age Distribution](Images/age_distribution.PNG)
@@ -67,6 +68,7 @@ for i in list(set(test_df['Pclass'])):
 ```
 
 ### Fare Missing Values
+
 For the missing Fare value, it might be safe to assume that the mean would be the best option to impute according to the passenger class. We can first check that the fare and passenger class are highly correlated.
 
 Train Dataframe Fare Correlation
@@ -92,4 +94,6 @@ test_df['Fare'] = test_df['Fare'].fillna(13.6756)
 ```
 
 ### Cabin Missing Values
+
+The missing cabin values are substantial - about 77% of Cabin values are missing from the training dataset and about 78% of Cabin values are missing from the testing dataset. With so much of the data missing, it is worth considering dropping the Cabin factor altogether. However, it is reasonable to assume that the location of the passengers' cabin would be an important factor in who survived when taking into to account where the boat split apart, how far a passenger was from stairs or an emergency exit, how much closer they were to the deck to access lifeboats, etc. Therefore, I decided to keep the cabin variable. In order to account for the missing values, I simply replaced the NaNs with "Missing."
 
