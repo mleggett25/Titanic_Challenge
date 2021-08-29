@@ -110,3 +110,6 @@ For the two missing embarked values, I researched the names of the passengers wh
 new_train_df['Embarked'] = new_train_df['Embarked'].fillna('S')
 ```
 
+## Machine Learning
+
+With the missing values now accounted for, the data is ready to be processed through a machine learning model. To find the model with the most accuracy, I tested three different models: a logistic regression model, a random forest model, and a support vector machine (SVM). A logistic regression model is a straightfoward choice - it predicts binary outcomes by analyzing the available data and mathematically determines the probability of new samples belonging to a class. A random forest model is also a potentially good model as it uses many small decision trees to create strong predictive power. Random forest models are also robust against overfitting the data. An SVM, similar to the logistic regression, is a binary classifier. However, SVMs separate the two classes in a dataset with the widest possible margin, which can make exceptions for outliers, making it a contender to be a good machine learning model.
