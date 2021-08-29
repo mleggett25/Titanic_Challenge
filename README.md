@@ -116,3 +116,41 @@ With the missing values now accounted for, the data is ready to be processed thr
 
 ### Logistic Regression Model
 
+```
+# Import machine learning dependencies
+from sklearn.linear_model import LogisticRegression
+
+# Create target variable and features
+y = new_train_df['Survived']
+
+features = ['Pclass', 'Sex', 'Age', 'SibSp', 'Parch', 'Fare', 'Embarked']
+X = pd.get_dummies(new_train_df[features])
+X_test = pd.get_dummies(new_test_df[features])
+
+# Use StandardScaler to scale the data
+from sklearn.preprocessing import StandardScaler
+
+scaler = StandardScaler()
+
+X_scaler = scaler.fit(X)
+
+X_train_scaled = X_scaler.transform(X)
+X_test_scaled = X_scaler.transform(X_test)
+
+# Create logistic regression model
+model = LogisticRegression(solver='liblinear', max_iter=200, random_state=1)
+
+# Train the model with training data
+model.fit(X_train_scaled, y)
+
+# Have the model run predictions on the test data
+predictions = model.predict(X_test_scaled)
+
+# Output
+output = pd.DataFrame({'PassengerId': new_test_df.PassengerId, 'Survived': predictions})
+output
+
+# Export to csv
+output.to_csv('log_reg_submission.csv', index=False)
+```
+
