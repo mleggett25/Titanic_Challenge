@@ -102,5 +102,11 @@ new_train_df['Cabin'] = new_train_df['Cabin'].fillna('Missing')
 new_test_df['Cabin'] = new_test_df['Cabin'].fillna('Missing')
 ```
 
+### Embarked Missing Values
 
+For the two missing embarked values, I researched the names of the passengers who were missing. I was able to find the two passengers, Mrs. George Nelson Stone (Martha Evelyn Stone Harrington) and Miss. Amelie Icard on [Encyclopedia Titanica](https://www.encyclopedia-titanica.org/titanic-survivor/martha-evelyn-stone.html). Both embarked out of Southampton. I therefore imputed their missing embarked values with S.
+
+```
+new_train_df['Embarked'] = new_train_df['Embarked'].fillna('S')
+```
 
