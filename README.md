@@ -126,14 +126,48 @@ new_test_df['Age'] = pd.cut(new_test_df['Age'], age_bins, labels=age_names)
 ```
 
 ### Binning Deck
-Binning the cabin data was less straightforward as the data includes the deck, which is characterized by a letter, and the cabin number together. The most important information in the value is the deck letter as the decks can be binned together based on the similarity of passenger class demographics. Therefore, I first created a new Deck column in the training and testing dataframes by slicing the Cabin column values.
+Binning the cabin data was less straightforward as the data includes the deck, which is characterized by a letter, and the cabin number together. The most important information in the value is the deck letter as the decks can be binned together based on the similarity of passenger class demographics. Before I could bin the decks however, I first needed to best visualize the distribution of the three passenger classes amongst each deck, which I decided would be a stacked bar chart.
+
+I first created a new Deck column in the training and testing dataframes by slicing the Cabin column values.
 
 ```
 new_train_df = new_train_df.assign(Deck = new_train_df['Cabin'].str[:1])
 new_test_df = new_test_df.assign(Deck = new_test_df['Cabin'].str[:1])
 ```
 
+I then created a new dataframe called 'deck_df' which was grouped by the deck and passenger class and counted the values for each.
 
+```
+deck_df = new_train_df.groupby(['Deck', 'Pclass']).count().drop(columns=['Survived', 'Sex', 'Age', 'SibSp', 'Parch', 'Fare', 'Embarked', 'Cabin', 'PassengerId', 'Ticket']).rename(columns={'Name':'Count'}).reset_index()
+```
+
+I pivoted the dataframe in order to put it in the format needed for a stacked bar chart.
+
+```
+deck_df = deck_df.pivot(index='Deck', columns='Pclass', values='Count')
+```
+
+To make the stacked bar chart easier to read and understand, I converted the absolute values to percentages.
+
+```
+deck_df = deck_df.div(deck_df.sum(axis=1), axis=0).multiply(100).round(1)
+```
+
+The final deck dataframe looked as such:
+
+![Deck Dataframe](Images/deck_df.PNG)
+
+With the deck dataframe finalized, I was able to create the stacked bar chart needed to visualize the distributions using matplotlib:
+
+```
+deck_df.plot.bar(stacked=True)
+plt.legend(title='Passenger Class', loc='upper left', bbox_to_anchor=(1,1))
+plt.xlabel('Deck')
+plt.ylabel('Percent of Passengers by Class')
+plt.xticks(rotation=0)
+```
+
+![Stacked Bar Chart](Images/stacked_bar_chart.PNG)
 
 ## Machine Learning
 
