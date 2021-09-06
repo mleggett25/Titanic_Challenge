@@ -110,6 +110,31 @@ For the two missing embarked values, I researched the names of the passengers wh
 new_train_df['Embarked'] = new_train_df['Embarked'].fillna('S')
 ```
 
+## Binning the Data
+
+In order for the machine learning model to run more efficiently and increase accuracy, a good strategy is to bin variables with large amounts of unique values. For this Titanic dataset, the Age and Cabin variables are viable candidates for binning. From the Cabin data, I extracted and created a new column with the deck letters alone and binned the data by deck.
+
+### Binning Age
+
+For the Age variable, I binned the data based on categories the U.S. Census uses for age ranges. I therefore binned the age data as such: 0-17 years, 18-24 years, 25-44 years, 45-64 years, and 65+ years.
+
+```
+age_bins = [0, 17, 24, 44, 64, np.inf]
+age_names = ['0-17 years', '18-24 years', '25-44 years', '45-64 years', '65+ years']
+new_train_df['Age'] = pd.cut(new_train_df['Age'], age_bins, labels=age_names)
+new_test_df['Age'] = pd.cut(new_test_df['Age'], age_bins, labels=age_names)
+```
+
+### Binning Deck
+Binning the cabin data was less straightforward as the data includes the deck, which is characterized by a letter, and the cabin number together. The most important information in the value is the deck letter as the decks can be binned together based on the similarity of passenger class demographics. Therefore, I first created a new Deck column in the training and testing dataframes by slicing the Cabin column values.
+
+```
+new_train_df = new_train_df.assign(Deck = new_train_df['Cabin'].str[:1])
+new_test_df = new_test_df.assign(Deck = new_test_df['Cabin'].str[:1])
+```
+
+
+
 ## Machine Learning
 
 With the missing values now accounted for, the data is ready to be processed through a machine learning model. To find the model with the most accuracy, I tested three different models: a logistic regression model, a random forest model, and a support vector machine (SVM). A logistic regression model is a straightfoward choice - it predicts binary outcomes by analyzing the available data and mathematically determines the probability of new samples belonging to a class. A random forest model is also a potentially good model as it uses many small decision trees to create strong predictive power. Random forest models are also robust against overfitting the data. An SVM, similar to the logistic regression, is a binary classifier. However, SVMs separate the two classes in a dataset with the widest possible margin, which can make exceptions for outliers, making it a contender to be a good machine learning model.
