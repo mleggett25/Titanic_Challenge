@@ -126,7 +126,7 @@ new_test_df['Age'] = pd.cut(new_test_df['Age'], age_bins, labels=age_names)
 ```
 
 ### Binning Deck
-Binning the cabin data was less straightforward as the data includes the deck, which is characterized by a letter, and the cabin number together. The most important information in the value is the deck letter as the decks can be binned together based on the similarity of passenger class demographics. Before I could bin the decks however, I first needed to best visualize the distribution of the three passenger classes amongst each deck, which I decided would be a stacked bar chart.
+Binning the cabin data was less straightforward as the data includes the deck, which is characterized by a letter, and the cabin number together. The most important information in the value is the deck letter as the decks can be binned together based on the similarity of passenger class demographics. The Cabin feature would then be dropped in order to reduce noise in the data. Before I could bin the decks however, I first needed to best visualize the distribution of the three passenger classes amongst each deck, which I decided would be a stacked bar chart.
 
 I first created a new Deck column in the training and testing dataframes by slicing the Cabin column values.
 
@@ -168,6 +168,15 @@ plt.xticks(rotation=0)
 ```
 
 ![Stacked Bar Chart](Images/stacked_bar_chart.PNG)
+
+Based on the stacked bar chart, it would seem to make the most sense to bin the Deck data as such:
+
+- ABC: 100% of decks A, B, and C are all first class passengers. The one passenger on T Deck is also included in the ABC bin as they are first class.
+- DE: Share a very similar distribution of passenger classes with the only difference being Deck E introducing a small percentage of third class passengers.
+- FG: Deck F has an almost even distribution of second and third class passengers and Deck G has 100% third class passengers. While the distributions are not very similar, the proximity of the decks to each other and both containing third class passengers gives enough reason to bin the decks together.
+- M: Missing data
+
+To further confirm that the binning of the decks are 
 
 ## Machine Learning
 
