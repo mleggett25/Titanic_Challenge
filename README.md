@@ -212,6 +212,7 @@ plt.xticks(rotation=0)
 
 ![Survival Stacked Bar Chart](Images/survival_stacked_bar_chart.PNG)
 
+As we can see, the survival rates amongst the decks within each bin are similar enough to each other to justify their placement in their respective bin.
 
 ## Machine Learning
 
