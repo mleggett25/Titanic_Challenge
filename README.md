@@ -167,7 +167,7 @@ plt.ylabel('Percent of Passengers by Class')
 plt.xticks(rotation=0)
 ```
 
-![Stacked Bar Chart](Images/stacked_bar_chart.PNG)
+![Deck Stacked Bar Chart](Images/deck_stacked_bar_chart.PNG)
 
 Based on the stacked bar chart, it would seem to make the most sense to bin the Deck data as such:
 
@@ -176,7 +176,42 @@ Based on the stacked bar chart, it would seem to make the most sense to bin the 
 - FG: Deck F has an almost even distribution of second and third class passengers and Deck G has 100% third class passengers. While the distributions are not very similar, the proximity of the decks to each other and both containing third class passengers gives enough reason to bin the decks together.
 - M: Missing data
 
-To further confirm that the binning of the decks are 
+To further confirm that the binning of the decks as such is appropriate, I also created a stacked bar chart showing the survival rates of each deck. I created a new dataframe called 'survival_df' which was grouped by the deck and survived data and counted the values for each.
+
+```
+survival_df = new_train_df.groupby(['Survived', 'Deck']).count().drop(columns=['Pclass', 'Sex', 'Age', 'SibSp', 'Parch', 'Fare', 'Embarked', 'Cabin', 'PassengerId', 'Ticket']).rename(columns={'Name':'Count'}).reset_index()
+```
+
+I pivoted the dataframe in order to put it in the format needed for a stacked bar chart.
+
+```
+survival_df = survival_df.pivot(index='Deck', columns='Survived', values='Count')
+```
+
+To make the stacked bar chart easier to read and understand, I converted the absolute values to percentages.
+
+```
+survival_df = survival_df.div(survival_df.sum(axis=1), axis=0).multiply(100).round(1)
+```
+
+The final survival dataframe looked as such:
+
+![Survival Dataframe](Images/survival_df.PNG)
+
+With the dataframe finalized, I was able to create the stacked bar chart needed to visualize the survival rates using matplotlib:
+
+```
+survival_df.plot.bar(stacked=True)
+legend = plt.legend(title='Survived', loc='upper left', bbox_to_anchor=(1,1))
+legend.get_texts()[0].set_text('No')
+legend.get_texts()[1].set_text('Yes')
+plt.xlabel('Deck')
+plt.ylabel('Percent Survived by Passenger Class')
+plt.xticks(rotation=0)
+```
+
+![Survival Stacked Bar Chart](Images/survival_stacked_bar_chart.PNG)
+
 
 ## Machine Learning
 
