@@ -212,7 +212,43 @@ plt.xticks(rotation=0)
 
 ![Survival Stacked Bar Chart](Images/survival_stacked_bar_chart.PNG)
 
-As we can see, the survival rates amongst the decks within each bin are similar enough to each other to justify their placement in their respective bin.
+As we can see, the survival rates amongst the decks within each bin are similar enough to each other to justify their placement in their respective bin. I created a function that would replace the deck values with their respective bins and applied the function to the train and test dataframes.
+
+```
+def deck_bins(deck):
+    
+    if deck in ['A', 'B', 'C', 'T']:
+        return 'ABC'
+    
+    elif deck in ['D', 'E']:
+        return 'DE'
+    
+    elif deck in ['FG']:
+        return 'FG'
+    
+    else:
+        return 'M'
+
+new_train_df['Deck'] = new_train_df['Deck'].apply(deck_bins)
+new_test_df['Deck'] = new_test_df['Deck'].apply(deck_bins)
+```
+
+I then dropped all unnecessary columns in the dataframes. The dropped columns are PassengerId, Name, Ticket, and Cabin. These columns are unnecessary because they hold no predictive power and keeping them in the dataframes would create noise in the data and potentially make the machine learning models less accurate.
+
+```
+ml_train_df = new_train_df.drop(['PassengerId', 'Name', 'Ticket', 'Cabin'], axis=1)
+ml_test_df = new_test_df.drop(['PassengerId', 'Name', 'Ticket', 'Cabin'], axis=1)
+```
+
+The final dataframes which will be used in the machine learning models look as such:
+
+Train Dataframe
+
+![ML Train DF](Images/ml_train_df.PNG)
+
+Test Dataframe
+
+![ML Test DF](Images/ml_test_df.PNG)
 
 ## Machine Learning
 
